@@ -1,0 +1,756 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C417CCA72419845300CCFFE1 /* Drawing.Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417CCA62419845300CCFFE1 /* Drawing.Application.swift */; };
+		C417CCA92419847D00CCFFE1 /* Application.Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417CCA82419847D00CCFFE1 /* Application.Delegate.swift */; };
+		C41DE74C2419F0CE007F97BB /* Alignment.Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE74B2419F0CE007F97BB /* Alignment.Rule.swift */; };
+		C41DE74E2419F724007F97BB /* Snaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE74D2419F724007F97BB /* Snaping.swift */; };
+		C41DE751241A030E007F97BB /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE750241A030E007F97BB /* Guide.swift */; };
+		C41DE753241A0C2D007F97BB /* Guide.MetaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE752241A0C2D007F97BB /* Guide.MetaInfo.swift */; };
+		C41DE755241A0C5E007F97BB /* Guide.Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE754241A0C5E007F97BB /* Guide.Direction.swift */; };
+		C41DE757241A0CA5007F97BB /* Guide.State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE756241A0CA5007F97BB /* Guide.State.swift */; };
+		C41DE75A241A1210007F97BB /* Drawing.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DE759241A1210007F97BB /* Drawing.ViewModel.swift */; };
+		C4231A0D2419862F00FCB61C /* Drawing.Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4231A0C2419862F00FCB61C /* Drawing.Window.swift */; };
+		C4231A0F2419865C00FCB61C /* Drawing.WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4231A0E2419865C00FCB61C /* Drawing.WindowController.swift */; };
+		C435F6DD241A2E3100850858 /* Dragging.Guide.Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435F6DC241A2E3100850858 /* Dragging.Guide.Contract.swift */; };
+		C4B33E4D24197441004CE9B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E4C24197441004CE9B2 /* AppDelegate.swift */; };
+		C4B33E4F24197441004CE9B2 /* Drawing.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E4E24197441004CE9B2 /* Drawing.ViewController.swift */; };
+		C4B33E5124197443004CE9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4B33E5024197443004CE9B2 /* Assets.xcassets */; };
+		C4B33E5E24197464004CE9B2 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E5D24197464004CE9B2 /* Drawable.swift */; };
+		C4B33E6024197474004CE9B2 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E5F24197474004CE9B2 /* Polygon.swift */; };
+		C4B33E622419748F004CE9B2 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E612419748F004CE9B2 /* Circle.swift */; };
+		C4B33E64241974D4004CE9B2 /* Diagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E63241974D4004CE9B2 /* Diagram.swift */; };
+		C4B33E6D241978A9004CE9B2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E6C241978A9004CE9B2 /* Path.swift */; };
+		C4B33E7024197ADB004CE9B2 /* CGContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E6F24197ADB004CE9B2 /* CGContext+Extensions.swift */; };
+		C4B33E7224197DDF004CE9B2 /* UIBezierPath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E7124197DDF004CE9B2 /* UIBezierPath+Extensions.swift */; };
+		C4B33E7524197FDD004CE9B2 /* Shape.Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E7424197FDD004CE9B2 /* Shape.Layer.swift */; };
+		C4B33E772419813F004CE9B2 /* Drawing.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E762419813F004CE9B2 /* Drawing.View.swift */; };
+		C4B33E7B2419833B004CE9B2 /* Shape.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E7A2419833B004CE9B2 /* Shape.View.swift */; };
+		C4BAF5412419890000858C13 /* Drawing.Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5402419890000858C13 /* Drawing.Toolbar.swift */; };
+		C4BAF54324198A0000858C13 /* Toolbar.Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF54224198A0000858C13 /* Toolbar.Button.swift */; };
+		C4BAF54624198D6200858C13 /* Drawing.Toolbar.Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF54524198D6200858C13 /* Drawing.Toolbar.Contract.swift */; };
+		C4BAF549241997A400858C13 /* Snap.Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF548241997A400858C13 /* Snap.Point.swift */; };
+		C4BAF54B2419993E00858C13 /* Anchor.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF54A2419993E00858C13 /* Anchor.View.swift */; };
+		C4BAF54D24199AE700858C13 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF54C24199AE700858C13 /* Anchor.swift */; };
+		C4BAF54F2419A18D00858C13 /* Dragging.View.Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF54E2419A18D00858C13 /* Dragging.View.Contract.swift */; };
+		C4BAF5572419B18B00858C13 /* Snap.Point.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5562419B18B00858C13 /* Snap.Point.View.swift */; };
+		C4BAF5592419C0FF00858C13 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5582419C0FF00858C13 /* Square.swift */; };
+		C4BAF55C2419C94200858C13 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF55B2419C94200858C13 /* CGFloat+Extensions.swift */; };
+		C4BAF55E2419D45700858C13 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF55D2419D45700858C13 /* CGRect+Extensions.swift */; };
+		C4BAF5602419D5A600858C13 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF55F2419D5A600858C13 /* CGPoint+Extensions.swift */; };
+		C4BAF5682419D68F00858C13 /* SnapAlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5672419D68F00858C13 /* SnapAlignmentTests.swift */; };
+		C4BAF5702419D69A00858C13 /* Alignment.Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF56F2419D69A00858C13 /* Alignment.Tests.swift */; };
+		C4BAF5722419E3C000858C13 /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5712419E3C000858C13 /* NSView+Extensions.swift */; };
+		C4BAF5742419EEF000858C13 /* Snap.Point.Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5732419EEF000858C13 /* Snap.Point.Pair.swift */; };
+		C4BAF5772419EF4F00858C13 /* Copy.On.Write.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAF5762419EF4F00858C13 /* Copy.On.Write.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4BAF56A2419D68F00858C13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4B33E4124197441004CE9B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4B33E4824197441004CE9B2;
+			remoteInfo = SnapAlignment;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C417CCA62419845300CCFFE1 /* Drawing.Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.Application.swift; sourceTree = "<group>"; };
+		C417CCA82419847D00CCFFE1 /* Application.Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.Delegate.swift; sourceTree = "<group>"; };
+		C41DE74B2419F0CE007F97BB /* Alignment.Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.Rule.swift; sourceTree = "<group>"; };
+		C41DE74D2419F724007F97BB /* Snaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snaping.swift; sourceTree = "<group>"; };
+		C41DE750241A030E007F97BB /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		C41DE752241A0C2D007F97BB /* Guide.MetaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.MetaInfo.swift; sourceTree = "<group>"; };
+		C41DE754241A0C5E007F97BB /* Guide.Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.Direction.swift; sourceTree = "<group>"; };
+		C41DE756241A0CA5007F97BB /* Guide.State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.State.swift; sourceTree = "<group>"; };
+		C41DE759241A1210007F97BB /* Drawing.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.ViewModel.swift; sourceTree = "<group>"; };
+		C4231A0C2419862F00FCB61C /* Drawing.Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.Window.swift; sourceTree = "<group>"; };
+		C4231A0E2419865C00FCB61C /* Drawing.WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.WindowController.swift; sourceTree = "<group>"; };
+		C435F6DC241A2E3100850858 /* Dragging.Guide.Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragging.Guide.Contract.swift; sourceTree = "<group>"; };
+		C4B33E4924197441004CE9B2 /* SnapAlignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapAlignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B33E4C24197441004CE9B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4B33E4E24197441004CE9B2 /* Drawing.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.ViewController.swift; sourceTree = "<group>"; };
+		C4B33E5024197443004CE9B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4B33E5524197444004CE9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4B33E5624197444004CE9B2 /* SnapAlignment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SnapAlignment.entitlements; sourceTree = "<group>"; };
+		C4B33E5D24197464004CE9B2 /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
+		C4B33E5F24197474004CE9B2 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		C4B33E612419748F004CE9B2 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		C4B33E63241974D4004CE9B2 /* Diagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagram.swift; sourceTree = "<group>"; };
+		C4B33E6C241978A9004CE9B2 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		C4B33E6F24197ADB004CE9B2 /* CGContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Extensions.swift"; sourceTree = "<group>"; };
+		C4B33E7124197DDF004CE9B2 /* UIBezierPath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extensions.swift"; sourceTree = "<group>"; };
+		C4B33E7424197FDD004CE9B2 /* Shape.Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.Layer.swift; sourceTree = "<group>"; };
+		C4B33E762419813F004CE9B2 /* Drawing.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.View.swift; sourceTree = "<group>"; };
+		C4B33E7A2419833B004CE9B2 /* Shape.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.View.swift; sourceTree = "<group>"; };
+		C4BAF5402419890000858C13 /* Drawing.Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.Toolbar.swift; sourceTree = "<group>"; };
+		C4BAF54224198A0000858C13 /* Toolbar.Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.Button.swift; sourceTree = "<group>"; };
+		C4BAF54524198D6200858C13 /* Drawing.Toolbar.Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.Toolbar.Contract.swift; sourceTree = "<group>"; };
+		C4BAF548241997A400858C13 /* Snap.Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snap.Point.swift; sourceTree = "<group>"; };
+		C4BAF54A2419993E00858C13 /* Anchor.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.View.swift; sourceTree = "<group>"; };
+		C4BAF54C24199AE700858C13 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
+		C4BAF54E2419A18D00858C13 /* Dragging.View.Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragging.View.Contract.swift; sourceTree = "<group>"; };
+		C4BAF5562419B18B00858C13 /* Snap.Point.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snap.Point.View.swift; sourceTree = "<group>"; };
+		C4BAF5582419C0FF00858C13 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		C4BAF55B2419C94200858C13 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		C4BAF55D2419D45700858C13 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		C4BAF55F2419D5A600858C13 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		C4BAF5652419D68F00858C13 /* SnapAlignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapAlignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BAF5672419D68F00858C13 /* SnapAlignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapAlignmentTests.swift; sourceTree = "<group>"; };
+		C4BAF5692419D68F00858C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4BAF56F2419D69A00858C13 /* Alignment.Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.Tests.swift; sourceTree = "<group>"; };
+		C4BAF5712419E3C000858C13 /* NSView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
+		C4BAF5732419EEF000858C13 /* Snap.Point.Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snap.Point.Pair.swift; sourceTree = "<group>"; };
+		C4BAF5762419EF4F00858C13 /* Copy.On.Write.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copy.On.Write.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4B33E4624197441004CE9B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BAF5622419D68F00858C13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C417CCAA2419848200CCFFE1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E4C24197441004CE9B2 /* AppDelegate.swift */,
+				C417CCA62419845300CCFFE1 /* Drawing.Application.swift */,
+				C417CCA82419847D00CCFFE1 /* Application.Delegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C41DE74F241A0305007F97BB /* Guides */ = {
+			isa = PBXGroup;
+			children = (
+				C41DE750241A030E007F97BB /* Guide.swift */,
+				C41DE752241A0C2D007F97BB /* Guide.MetaInfo.swift */,
+				C41DE754241A0C5E007F97BB /* Guide.Direction.swift */,
+				C41DE756241A0CA5007F97BB /* Guide.State.swift */,
+			);
+			path = Guides;
+			sourceTree = "<group>";
+		};
+		C41DE758241A1205007F97BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C41DE759241A1210007F97BB /* Drawing.ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C41DE75B241A1233007F97BB /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E7A2419833B004CE9B2 /* Shape.View.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		C41DE75C241A123A007F97BB /* Anchor */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF54A2419993E00858C13 /* Anchor.View.swift */,
+			);
+			path = Anchor;
+			sourceTree = "<group>";
+		};
+		C41DE75D241A1241007F97BB /* SnapPoint */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF5562419B18B00858C13 /* Snap.Point.View.swift */,
+			);
+			path = SnapPoint;
+			sourceTree = "<group>";
+		};
+		C4231A0B2419862700FCB61C /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				C4231A0C2419862F00FCB61C /* Drawing.Window.swift */,
+				C4231A0E2419865C00FCB61C /* Drawing.WindowController.swift */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		C4231A10241987E000FCB61C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C41DE75D241A1241007F97BB /* SnapPoint */,
+				C41DE75C241A123A007F97BB /* Anchor */,
+				C41DE75B241A1233007F97BB /* Shapes */,
+				C41DE758241A1205007F97BB /* ViewModel */,
+				C4B33E4E24197441004CE9B2 /* Drawing.ViewController.swift */,
+				C4B33E762419813F004CE9B2 /* Drawing.View.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C4B33E4024197441004CE9B2 = {
+			isa = PBXGroup;
+			children = (
+				C4B33E4B24197441004CE9B2 /* SnapAlignment */,
+				C4BAF5662419D68F00858C13 /* SnapAlignmentTests */,
+				C4B33E4A24197441004CE9B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4B33E4A24197441004CE9B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E4924197441004CE9B2 /* SnapAlignment.app */,
+				C4BAF5652419D68F00858C13 /* SnapAlignmentTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4B33E4B24197441004CE9B2 /* SnapAlignment */ = {
+			isa = PBXGroup;
+			children = (
+				C417CCAA2419848200CCFFE1 /* Application */,
+				C4B33E7924198322004CE9B2 /* DrawingFeature */,
+				C4B33E782419831A004CE9B2 /* Graphics */,
+				C4B33E5024197443004CE9B2 /* Assets.xcassets */,
+				C4B33E5524197444004CE9B2 /* Info.plist */,
+				C4B33E5624197444004CE9B2 /* SnapAlignment.entitlements */,
+			);
+			path = SnapAlignment;
+			sourceTree = "<group>";
+		};
+		C4B33E5C2419744E004CE9B2 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E5D24197464004CE9B2 /* Drawable.swift */,
+				C4B33E5F24197474004CE9B2 /* Polygon.swift */,
+				C4B33E612419748F004CE9B2 /* Circle.swift */,
+				C4BAF5582419C0FF00858C13 /* Square.swift */,
+				C4B33E63241974D4004CE9B2 /* Diagram.swift */,
+			);
+			path = Shape;
+			sourceTree = "<group>";
+		};
+		C4B33E6B241978A2004CE9B2 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E6C241978A9004CE9B2 /* Path.swift */,
+				C4B33E7124197DDF004CE9B2 /* UIBezierPath+Extensions.swift */,
+			);
+			path = Path;
+			sourceTree = "<group>";
+		};
+		C4B33E6E24197ACB004CE9B2 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E6F24197ADB004CE9B2 /* CGContext+Extensions.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		C4B33E7324197FD0004CE9B2 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				C4B33E7424197FDD004CE9B2 /* Shape.Layer.swift */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		C4B33E782419831A004CE9B2 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				C41DE74F241A0305007F97BB /* Guides */,
+				C4BAF5752419EF4700858C13 /* Utilities */,
+				C4BAF55A2419C93900858C13 /* Extensions */,
+				C4BAF5532419B07200858C13 /* Alignment */,
+				C4BAF5472419976400858C13 /* Anchors */,
+				C4B33E7324197FD0004CE9B2 /* Layer */,
+				C4B33E6E24197ACB004CE9B2 /* Context */,
+				C4B33E6B241978A2004CE9B2 /* Path */,
+				C4B33E5C2419744E004CE9B2 /* Shape */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		C4B33E7924198322004CE9B2 /* DrawingFeature */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF54424198D5600858C13 /* Contracts */,
+				C4BAF53F241988F800858C13 /* Toolbar */,
+				C4231A0B2419862700FCB61C /* Windows */,
+				C4231A10241987E000FCB61C /* Views */,
+			);
+			path = DrawingFeature;
+			sourceTree = "<group>";
+		};
+		C4BAF53F241988F800858C13 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF5402419890000858C13 /* Drawing.Toolbar.swift */,
+				C4BAF54224198A0000858C13 /* Toolbar.Button.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		C4BAF54424198D5600858C13 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF54524198D6200858C13 /* Drawing.Toolbar.Contract.swift */,
+				C4BAF54E2419A18D00858C13 /* Dragging.View.Contract.swift */,
+				C435F6DC241A2E3100850858 /* Dragging.Guide.Contract.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		C4BAF5472419976400858C13 /* Anchors */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF5732419EEF000858C13 /* Snap.Point.Pair.swift */,
+				C4BAF548241997A400858C13 /* Snap.Point.swift */,
+				C4BAF54C24199AE700858C13 /* Anchor.swift */,
+			);
+			path = Anchors;
+			sourceTree = "<group>";
+		};
+		C4BAF5532419B07200858C13 /* Alignment */ = {
+			isa = PBXGroup;
+			children = (
+				C41DE74B2419F0CE007F97BB /* Alignment.Rule.swift */,
+				C41DE74D2419F724007F97BB /* Snaping.swift */,
+			);
+			path = Alignment;
+			sourceTree = "<group>";
+		};
+		C4BAF55A2419C93900858C13 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF55B2419C94200858C13 /* CGFloat+Extensions.swift */,
+				C4BAF55D2419D45700858C13 /* CGRect+Extensions.swift */,
+				C4BAF55F2419D5A600858C13 /* CGPoint+Extensions.swift */,
+				C4BAF5712419E3C000858C13 /* NSView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C4BAF5662419D68F00858C13 /* SnapAlignmentTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF5672419D68F00858C13 /* SnapAlignmentTests.swift */,
+				C4BAF5692419D68F00858C13 /* Info.plist */,
+				C4BAF56F2419D69A00858C13 /* Alignment.Tests.swift */,
+			);
+			path = SnapAlignmentTests;
+			sourceTree = "<group>";
+		};
+		C4BAF5752419EF4700858C13 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C4BAF5762419EF4F00858C13 /* Copy.On.Write.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4B33E4824197441004CE9B2 /* SnapAlignment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4B33E5924197444004CE9B2 /* Build configuration list for PBXNativeTarget "SnapAlignment" */;
+			buildPhases = (
+				C4B33E4524197441004CE9B2 /* Sources */,
+				C4B33E4624197441004CE9B2 /* Frameworks */,
+				C4B33E4724197441004CE9B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnapAlignment;
+			productName = SnapAlignment;
+			productReference = C4B33E4924197441004CE9B2 /* SnapAlignment.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4BAF5642419D68F00858C13 /* SnapAlignmentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4BAF56C2419D68F00858C13 /* Build configuration list for PBXNativeTarget "SnapAlignmentTests" */;
+			buildPhases = (
+				C4BAF5612419D68F00858C13 /* Sources */,
+				C4BAF5622419D68F00858C13 /* Frameworks */,
+				C4BAF5632419D68F00858C13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4BAF56B2419D68F00858C13 /* PBXTargetDependency */,
+			);
+			name = SnapAlignmentTests;
+			productName = SnapAlignmentTests;
+			productReference = C4BAF5652419D68F00858C13 /* SnapAlignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4B33E4124197441004CE9B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = zkhaider;
+				TargetAttributes = {
+					C4B33E4824197441004CE9B2 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					C4BAF5642419D68F00858C13 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = C4B33E4824197441004CE9B2;
+					};
+				};
+			};
+			buildConfigurationList = C4B33E4424197441004CE9B2 /* Build configuration list for PBXProject "SnapAlignment" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4B33E4024197441004CE9B2;
+			productRefGroup = C4B33E4A24197441004CE9B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4B33E4824197441004CE9B2 /* SnapAlignment */,
+				C4BAF5642419D68F00858C13 /* SnapAlignmentTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4B33E4724197441004CE9B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B33E5124197443004CE9B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BAF5632419D68F00858C13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4B33E4524197441004CE9B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B33E622419748F004CE9B2 /* Circle.swift in Sources */,
+				C41DE753241A0C2D007F97BB /* Guide.MetaInfo.swift in Sources */,
+				C41DE751241A030E007F97BB /* Guide.swift in Sources */,
+				C4231A0D2419862F00FCB61C /* Drawing.Window.swift in Sources */,
+				C4BAF54624198D6200858C13 /* Drawing.Toolbar.Contract.swift in Sources */,
+				C417CCA92419847D00CCFFE1 /* Application.Delegate.swift in Sources */,
+				C4B33E7524197FDD004CE9B2 /* Shape.Layer.swift in Sources */,
+				C4B33E7224197DDF004CE9B2 /* UIBezierPath+Extensions.swift in Sources */,
+				C4B33E6024197474004CE9B2 /* Polygon.swift in Sources */,
+				C41DE74E2419F724007F97BB /* Snaping.swift in Sources */,
+				C4BAF54D24199AE700858C13 /* Anchor.swift in Sources */,
+				C4231A0F2419865C00FCB61C /* Drawing.WindowController.swift in Sources */,
+				C4BAF5742419EEF000858C13 /* Snap.Point.Pair.swift in Sources */,
+				C4BAF5412419890000858C13 /* Drawing.Toolbar.swift in Sources */,
+				C4B33E6D241978A9004CE9B2 /* Path.swift in Sources */,
+				C435F6DD241A2E3100850858 /* Dragging.Guide.Contract.swift in Sources */,
+				C4BAF5572419B18B00858C13 /* Snap.Point.View.swift in Sources */,
+				C4BAF5772419EF4F00858C13 /* Copy.On.Write.swift in Sources */,
+				C4BAF549241997A400858C13 /* Snap.Point.swift in Sources */,
+				C4B33E5E24197464004CE9B2 /* Drawable.swift in Sources */,
+				C4B33E4F24197441004CE9B2 /* Drawing.ViewController.swift in Sources */,
+				C417CCA72419845300CCFFE1 /* Drawing.Application.swift in Sources */,
+				C4BAF5722419E3C000858C13 /* NSView+Extensions.swift in Sources */,
+				C4B33E7B2419833B004CE9B2 /* Shape.View.swift in Sources */,
+				C4BAF54324198A0000858C13 /* Toolbar.Button.swift in Sources */,
+				C4BAF55C2419C94200858C13 /* CGFloat+Extensions.swift in Sources */,
+				C4B33E772419813F004CE9B2 /* Drawing.View.swift in Sources */,
+				C41DE75A241A1210007F97BB /* Drawing.ViewModel.swift in Sources */,
+				C4B33E7024197ADB004CE9B2 /* CGContext+Extensions.swift in Sources */,
+				C4B33E4D24197441004CE9B2 /* AppDelegate.swift in Sources */,
+				C4BAF5602419D5A600858C13 /* CGPoint+Extensions.swift in Sources */,
+				C41DE757241A0CA5007F97BB /* Guide.State.swift in Sources */,
+				C4BAF5592419C0FF00858C13 /* Square.swift in Sources */,
+				C4BAF54B2419993E00858C13 /* Anchor.View.swift in Sources */,
+				C4BAF55E2419D45700858C13 /* CGRect+Extensions.swift in Sources */,
+				C4B33E64241974D4004CE9B2 /* Diagram.swift in Sources */,
+				C41DE755241A0C5E007F97BB /* Guide.Direction.swift in Sources */,
+				C4BAF54F2419A18D00858C13 /* Dragging.View.Contract.swift in Sources */,
+				C41DE74C2419F0CE007F97BB /* Alignment.Rule.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BAF5612419D68F00858C13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BAF5702419D69A00858C13 /* Alignment.Tests.swift in Sources */,
+				C4BAF5682419D68F00858C13 /* SnapAlignmentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4BAF56B2419D68F00858C13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4B33E4824197441004CE9B2 /* SnapAlignment */;
+			targetProxy = C4BAF56A2419D68F00858C13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C4B33E5724197444004CE9B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C4B33E5824197444004CE9B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		C4B33E5A24197444004CE9B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SnapAlignment/SnapAlignment.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EVL2DEPTTR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SnapAlignment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkhaider.SnapAlignment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C4B33E5B24197444004CE9B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SnapAlignment/SnapAlignment.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EVL2DEPTTR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SnapAlignment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkhaider.SnapAlignment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C4BAF56D2419D68F00858C13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EVL2DEPTTR;
+				INFOPLIST_FILE = SnapAlignmentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkhaider.SnapAlignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapAlignment.app/Contents/MacOS/SnapAlignment";
+			};
+			name = Debug;
+		};
+		C4BAF56E2419D68F00858C13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EVL2DEPTTR;
+				INFOPLIST_FILE = SnapAlignmentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkhaider.SnapAlignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapAlignment.app/Contents/MacOS/SnapAlignment";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4B33E4424197441004CE9B2 /* Build configuration list for PBXProject "SnapAlignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4B33E5724197444004CE9B2 /* Debug */,
+				C4B33E5824197444004CE9B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4B33E5924197444004CE9B2 /* Build configuration list for PBXNativeTarget "SnapAlignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4B33E5A24197444004CE9B2 /* Debug */,
+				C4B33E5B24197444004CE9B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4BAF56C2419D68F00858C13 /* Build configuration list for PBXNativeTarget "SnapAlignmentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4BAF56D2419D68F00858C13 /* Debug */,
+				C4BAF56E2419D68F00858C13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4B33E4124197441004CE9B2 /* Project object */;
+}
