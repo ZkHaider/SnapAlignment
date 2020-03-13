@@ -188,3 +188,8 @@ Algorithm
 - Set the minX, and minY values from those guides to the current dragging view's origin
 4. On drag end, update the current dragged view's guides for its new position
 
+
+Optimizations
+==========
+
+It might make sense to utilize a Quad Tree for spatial search instead of a greedy search.
