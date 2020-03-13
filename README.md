@@ -178,13 +178,13 @@ final class DrawingView: NSView {
 Algorithm
 =========
 
-1. Initialize a guide state:
+1.) Initialize a guide state:
 1a. `GuideState` should initially only have canvas guides
-2. For each view that is added:
-2a. Add left, top, right, bottom guides for that view in `[ObjectHash: Set<Guide>]` in your `GuideState`
-3. For every drag event:
-3a. Search for the nearest vertical guide under `guideState.guideThreshold` value that is not attached to the current view
-3b. Search for the nearest horizontal guide under `guideState.guideThreshold` value that is ont attached to the current view
-3c. Set the minX, and minY values from those guides to the current dragging view's origin
-4. On drag end, update the current dragged view's guides for its new position
+2.) For each view that is added:
+2a.) Add left, top, right, bottom guides for that view in `[ObjectHash: Set<Guide>]` in your `GuideState`
+3.) For every drag event:
+3a.) Search for the nearest vertical guide under `guideState.guideThreshold` value that is not attached to the current view
+3b.) Search for the nearest horizontal guide under `guideState.guideThreshold` value that is ont attached to the current view
+3c.) Set the minX, and minY values from those guides to the current dragging view's origin
+4.) On drag end, update the current dragged view's guides for its new position
 
