@@ -96,7 +96,6 @@ public final class ShapeView: NSControl {
     var paths: Set<Path> = Set()
     var color: NSColor
     let debugMode: Bool
-    var lastDragLocation: CGPoint = .zero
         
     // MARK: - Delegates
     
