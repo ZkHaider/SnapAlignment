@@ -100,17 +100,24 @@ final class DrawingView: NSView {
 extension DrawingView: DraggingViewContract {
     
     func startedDrag(
-        at point: CGPoint,
-        for view: ShapeView)
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
     {
         // Mouse down event -- ignore any anchor positions for this...
         // bad UX to show immediately
+        
+        self.draggingGuideDelegate?.startDrag(
+            view,
+            in: superview,
+            event: event
+        )
     }
     
     func dragging(
-        at origin: CGPoint,
-        with lastDragLocation: CGPoint,
-        for view: ShapeView)
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
     {
         // Dragging here determine logic for anchor position
         anchorViews.forEach { [weak self] in
@@ -121,17 +128,28 @@ extension DrawingView: DraggingViewContract {
                 $0.alphaValue = 0.0
             }
         }
-        self.draggingGuideDelegate?.didDrag(view)
+        self.draggingGuideDelegate?.didDrag(
+            view,
+            in: superview,
+            event: event
+        )
     }
     
     func endDrag(
-        at point: CGPoint,
-        for view: ShapeView) {
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent) {
         
         // Snap to if we are within threshold
         anchorViews.forEach {
             $0.alphaValue = 0.0
         }
+        
+        self.draggingGuideDelegate?.endedDrag(
+            view,
+            in: superview,
+            event: event
+        )
     }
     
 }

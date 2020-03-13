@@ -89,7 +89,10 @@ public class DrawingViewController: NSViewController {
                     .first(where: { $0.objectHash == canvasGuideViewIdentifier })
                 else { continue }
 
-            let guideRect = guide.rect(inside: bounds)
+            let guideRect = guide.rect(
+                for: bounds,
+                inside: bounds
+            )
             canvasAnchorView.frame = guideRect
             self.drawingViewModel.update(guide)
         }
@@ -103,16 +106,19 @@ extension DrawingViewController: DrawingToolbarContract {
     
     public func addPolygonShape(_ polygon: Polygon) {
         let shapeView = ShapeView(paths: polygon.paths)
+        drawingViewModel.addShapeGuides(for: shapeView, in: _view)
         _view.addShapeView(shapeView)
     }
     
     public func addCircleShape(_ circle: Circle) {
         let shapeView = ShapeView(paths: circle.paths)
+        drawingViewModel.addShapeGuides(for: shapeView, in: _view)
         _view.addShapeView(shapeView)
     }
     
     public func addSquareShape(_ square: Square) {
         let shapeView = ShapeView(paths: square.paths)
+        drawingViewModel.addShapeGuides(for: shapeView, in: _view)
         _view.addShapeView(shapeView)
     }
     
@@ -122,15 +128,40 @@ extension DrawingViewController: DrawingToolbarContract {
 
 extension DrawingViewController: DraggingGuideContract {
     
-    public func didDrag(_ view: ShapeView) {
-        
-        guard
-            let snapRect = self.drawingViewModel.snap(
-                viewRect: view.frame,
-                superViewBounds: self._view.bounds
-            )
-            else { return }
-        view.frame = snapRect
+    public func startDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        self.drawingViewModel.startingDrag(
+            for: view,
+            in: superview,
+            event: event
+        )
+    }
+    
+    public func didDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        self.drawingViewModel.dragging(
+            for: view,
+            in: superview,
+            event: event
+        )
+    }
+    
+    public func endedDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        self.drawingViewModel.endingDrag(
+            for: view,
+            in: superview,
+            event: event
+        )
     }
     
 }

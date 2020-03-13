@@ -97,16 +97,32 @@ public final class ShapeView: NSControl {
     var color: NSColor
     let debugMode: Bool
     var lastDragLocation: CGPoint = .zero
-    
+        
     // MARK: - Delegates
     
-    weak var draggingDelegate: DraggingViewContract? = nil 
+    weak var draggingDelegate: DraggingViewContract? = nil
+    
+    static let shapeColors: [NSColor] = [
+        .red,
+        .blue,
+        .cyan,
+        .green,
+        .orange,
+        .magenta,
+        .orange,
+        .purple,
+        .red,
+        .yellow,
+        .systemPink,
+        .systemTeal,
+        .systemIndigo
+    ]
     
     // MARK: - Init
     
     init(paths: Set<Path>,
-         color: NSColor = .red,
-         debugMode: Bool = false) {
+         color: NSColor = ShapeView.shapeColors.randomElement()!,
+         debugMode: Bool = true) {
         self.paths = paths
         self.color = color
         self.debugMode = debugMode
@@ -163,45 +179,34 @@ public final class ShapeView: NSControl {
         guard
             let superview = self.superview
             else { return }
-        
         self.window?.makeFirstResponder(self)
-        
-        self.lastDragLocation = superview.convert(event.locationInWindow, to: nil)
-        #if DEBUG
-        if (debugMode) {
-            print("""
-                👇 Start Drag at: \(self.lastDragLocation)
-            """)
-        }
-        #endif
-        self.draggingDelegate?.startedDrag(at: self.lastDragLocation, for: self)
+        self.draggingDelegate?.startedDrag(
+            for: self,
+            in: superview,
+            event: event
+        )
     }
     
     override public func mouseDragged(with event: NSEvent) {
         guard
             let superview = self.superview
             else { return }
-        
-        let newDragLocation = superview.convert(event.locationInWindow, to: nil)
-        var origin = self.frame.origin
-        origin.x += (-self.lastDragLocation.x + newDragLocation.x)
-        origin.y += (-self.lastDragLocation.y + newDragLocation.y)
-        self.setFrameOrigin(origin)
-        self.lastDragLocation = newDragLocation
-        
-        #if DEBUG
-        if (debugMode) {
-            print("""
-            👉 Drag Location: \(newDragLocation), Origin: \(origin)
-            """)
-        }
-        #endif
-        
-        self.draggingDelegate?.dragging(at: origin, with: newDragLocation, for: self)
+        self.draggingDelegate?.dragging(
+            for: self,
+            in: superview,
+            event: event
+        )
     }
     
     override public func mouseUp(with event: NSEvent) {
-        self.draggingDelegate?.endDrag(at: self.lastDragLocation, for: self)
+        guard
+            let superview = self.superview
+            else { return }
+        self.draggingDelegate?.endDrag(
+            for: self,
+            in: superview,
+            event: event
+        )
     }
     
 }

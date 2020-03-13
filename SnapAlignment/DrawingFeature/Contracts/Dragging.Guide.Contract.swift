@@ -6,8 +6,22 @@
 //  Copyright © 2020 zkhaider. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 public protocol DraggingGuideContract: class {
-    func didDrag(_ view: ShapeView)
+    func startDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
+    )
+    func didDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
+    )
+    func endedDrag(
+        _ view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
+    )
 }

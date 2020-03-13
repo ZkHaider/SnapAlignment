@@ -58,55 +58,53 @@ extension Anchor: CustomDebugStringConvertible {
 extension Anchor {
     
     public func getAnchorGuideFrame(
-        for bounds: NSRect,
+        in rect: CGRect,
         anchorWidth: CGFloat) -> CGRect {
-         
-         let superviewBounds = bounds
-         
-         switch self {
-         case .top:
-             return CGRect(
-                 x: superviewBounds.minX,
-                 y: superviewBounds.minY,
-                 width: superviewBounds.width,
-                 height: anchorWidth
-             )
-         case .left:
-             return CGRect(
-                 x: superviewBounds.minX,
-                 y: superviewBounds.minY,
-                 width: anchorWidth,
-                 height: superviewBounds.height
-             )
-         case .right:
-             return CGRect(
-                 x: superviewBounds.maxX - anchorWidth,
-                 y: superviewBounds.minY,
-                 width: anchorWidth,
-                 height: superviewBounds.height
-             )
-         case .centerX:
-             return CGRect(
-                 x: superviewBounds.midX - (anchorWidth / 2.0),
-                 y: superviewBounds.minY,
-                 width: anchorWidth,
-                 height: superviewBounds.height
-             )
-         case .centerY:
-             return CGRect(
-                 x: superviewBounds.minX,
-                 y: superviewBounds.midY - (anchorWidth / 2.0),
-                 width: superviewBounds.width,
-                 height: anchorWidth
-             )
-         case .bottom:
-             return CGRect(
-                 x: superviewBounds.minX,
-                 y: superviewBounds.maxY - anchorWidth,
-                 width: superviewBounds.width,
-                 height: anchorWidth
-             )
-         }
-     }
+        
+        switch self {
+        case .top:
+            return CGRect(
+                x: rect.minX,
+                y: rect.minY,
+                width: rect.width,
+                height: anchorWidth
+            )
+        case .left:
+            return CGRect(
+                x: rect.minX,
+                y: rect.minY,
+                width: anchorWidth,
+                height: rect.height
+            )
+        case .right:
+            return CGRect(
+                x: rect.maxX - anchorWidth,
+                y: rect.minY,
+                width: anchorWidth,
+                height: rect.height
+            )
+        case .centerX:
+            return CGRect(
+                x: rect.midX - (anchorWidth / 2.0),
+                y: rect.minY,
+                width: anchorWidth,
+                height: rect.height
+            )
+        case .centerY:
+            return CGRect(
+                x: rect.minX,
+                y: rect.midY - (anchorWidth / 2.0),
+                width: rect.width,
+                height: anchorWidth
+            )
+        case .bottom:
+            return CGRect(
+                x: rect.minX,
+                y: rect.maxY - anchorWidth,
+                width: rect.width,
+                height: anchorWidth
+            )
+        }
+    }
     
 }

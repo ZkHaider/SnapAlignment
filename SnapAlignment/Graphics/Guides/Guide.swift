@@ -29,6 +29,13 @@ public enum Guide {
         }
     }
     
+    public var meta: GuideMetaInfo {
+        switch self {
+        case .canvas(let meta): return meta
+        case .shape(let meta): return meta
+        }
+    }
+    
     public var color: NSColor {
         switch self {
         case .canvas(let meta): return meta.guideColor
@@ -124,29 +131,15 @@ extension Guide {
     
     // Get the guide rect relative to the rect that this guide is in.
     public func rect(
-        inside rect: CGRect) -> CGRect
+        for rect: CGRect,
+        inside superviewBounds: CGRect) -> CGRect
     {
-        switch self {
-        case .canvas(let meta):
-            return meta.anchor.getAnchorGuideFrame(for: rect, anchorWidth: 1.0)
-        default:
-            switch self.direction {
-            case .horizontal:
-                return CGRect(
-                    x: 0,
-                    y: self.position - 1,
-                    width: rect.width,
-                    height: 2
-                )
-            case .vertical:
-                return CGRect(
-                    x: self.position - 1,
-                    y: 0,
-                    width: 2,
-                    height: rect.height
-                )
-            }
-        }
+        let anchorFrame = meta.anchor.getAnchorGuideFrame(
+            in: rect,
+            anchorWidth: 1.0
+        )
+        
+        return anchorFrame
     }
     
 }

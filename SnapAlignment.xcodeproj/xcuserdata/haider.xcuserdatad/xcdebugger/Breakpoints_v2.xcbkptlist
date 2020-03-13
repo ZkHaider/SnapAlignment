@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E2FF9497-C205-4CD7-8868-410C64A02B09"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnapAlignment/Graphics/Extensions/CGPoint+Extensions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "distance(to:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ACCE1641-C9CC-4B08-855A-9391EA0AD027"
-            shouldBeEnabled = "Yes"
+            uuid = "140D429E-87AA-48A3-AC27-7AD0BF76C995"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnapAlignment/DrawingFeature/Views/ViewModel/Drawing.ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "nearestVerticalGuide(for:in:with:)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "endingDrag(for:in:event:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

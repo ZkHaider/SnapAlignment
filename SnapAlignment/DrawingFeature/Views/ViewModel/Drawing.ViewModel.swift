@@ -6,18 +6,57 @@
 //  Copyright © 2020 zkhaider. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 public final class DrawingViewModel {
     
     // MARK: - Attributes
     
     public var guideState: GuideState
+    public var lastDragLocation: CGPoint = .zero
+    public var debugMode: Bool = false
     
     // MARK: - Init
     
     public init(guideState: GuideState) {
         self.guideState = guideState
+    }
+    
+    // MARK: - Shape Guides
+    
+    public func addShapeGuides(
+        for shapeView: ShapeView,
+        in superview: NSView)
+    {
+        
+        // We want to set guides for this shape view
+        // .top, .left, .right, .bottom, .centerX, .centerY
+        let anchorPoints: [Anchor] = [.bottom, .left, .right, .right, .centerX, .centerY]
+        for anchor in anchorPoints {
+            
+            // Get our anchor frame first
+            let anchorFrame = anchor.getAnchorGuideFrame(
+                in: superview.bounds,
+                anchorWidth: 1.0
+            )
+            
+            // Generate a guide
+            let guide: Guide = .shape(
+                GuideMetaInfo(
+                    position: anchor.guideDirection == .horizontal ? anchorFrame.minY : anchorFrame.minX,
+                    viewHash: shapeView.objectHash,
+                    direction: anchor.guideDirection,
+                    anchor: anchor,
+                    guideColor: NSColor.red
+                )
+            )
+            
+            // Add and set our guide
+            self.guideState.addShapeGuide(
+                guide,
+                for: shapeView.objectHash
+            )
+        }
     }
     
     // MARK: - Updating
@@ -51,58 +90,199 @@ extension DrawingViewModel: Equatable {
 
 extension DrawingViewModel {
     
+    public func startingDrag(
+        for shapeView: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        
+        self.lastDragLocation = superview.convert(event.locationInWindow, to: nil)
+        #if DEBUG
+        if (debugMode) {
+            print("""
+                👇 Start Drag at: \(self.lastDragLocation)
+            """)
+        }
+        #endif
+    }
+    
+    
+    public func dragging(
+        for shapeView: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        
+        // Find closest guides first
+        guard
+           let guideResult = snap(
+               shapeView: shapeView,
+               superViewBounds: superview.bounds
+           )
+           else { return }
+        
+        let deltaX = event.deltaX
+        let deltaY = event.deltaY
+        
+        let newDragLocation = superview.convert(event.locationInWindow, to: nil)
+        var origin = shapeView.frame.origin
+        origin.x += (-self.lastDragLocation.x + newDragLocation.x)
+        origin.y += (-self.lastDragLocation.y + newDragLocation.y)
+        shapeView.setFrameOrigin(origin)
+        self.lastDragLocation = newDragLocation
+        
+        #if DEBUG
+        if (debugMode) {
+            print("""
+            👉 Drag Location: \(newDragLocation), Origin: \(origin)
+            """)
+        }
+        #endif
+        
+        let movingLeft = deltaX < -1
+        let movingRight = deltaX > 1
+        let movingUp = deltaY < -1
+        let movingDown = deltaY > 1
+        
+        // Set horizontal guide if below delta
+        if (!movingLeft && !movingRight && guideResult.nearestHorizontalGuide != nil) {
+            shapeView.frame.origin.y = guideResult.snapRect.origin.y
+        }
+        
+        // Set vertical guide if below delta
+        if (!movingUp && !movingDown && guideResult.nearestVerticalGuide != nil) {
+            shapeView.frame.origin.x = guideResult.snapRect.origin.x
+        }
+        
+    }
+    
+    public func endingDrag(
+        for shapeView: ShapeView,
+        in superview: NSView,
+        event: NSEvent)
+    {
+        
+        // We've ended dragging so update our dragged view guide
+        // 1. Get all guides for shape view
+        // 2. Generate new guide rect
+        // 3. Update in State
+        
+        // 1.
+        let shapeViewGuides = self.guideState.shapeGuides.filter {
+            $0.viewIdentifier == shapeView.objectHash
+        }
+        
+        shapeViewGuides.forEach { guide in
+            
+            var updatedGuide: Guide = guide
+            
+            // 2.
+            let guideRect = guide.rect(
+                for: shapeView.frame,
+                inside: superview.bounds
+            )
+         
+            
+            switch guide.direction {
+            case .vertical:
+                updatedGuide.updatePosition(guideRect.minY)
+            case .horizontal:
+                updatedGuide.updatePosition(guideRect.minX)
+            }
+            
+            // 3. Update
+            update(guide)
+        }
+    }
+    
+}
+
+extension DrawingViewModel {
+    
     /// Snaps nearest corner or centre point to the nearest guide if within threshold.
     /// @param rect -- is the rect of the view that needs to be snapped to a guide
     /// @param superViewBounds -- is used to calculate the guide rect
     public func snap(
-        viewRect rect: CGRect,
-        superViewBounds: CGRect) -> CGRect? {
+        shapeView view: ShapeView,
+        superViewBounds: CGRect) -> GuideResult? {
+        
+        let rect = view.frame
         
         // Initial rect
         var snapRect = rect
         
+        // Get horizontal and vertical guides not pertaining to this view
+        
         let horizontalGuides = self.guideState.allGuides.filter {
-            $0.direction == .horizontal
+            $0.direction == .horizontal && $0.viewIdentifier != view.objectHash
         }
-        let verticalGuides = self.guideState.allGuides
-            .filter { $0.direction == .vertical }
+        let verticalGuides = self.guideState.allGuides.filter {
+            $0.direction == .vertical && $0.viewIdentifier != view.objectHash
+        }
         
         // >> Check Min and Max For Vertical Guide <<
         
+        var _verticalGuide: Guide? = nil
         if let verticalGuide = nearestVerticalGuide(
             for: rect.minX,
-            in: superViewBounds,
+            shapeRect: rect,
+            superviewBounds: superViewBounds,
             with: verticalGuides)
         {
-            snapRect.origin.x = verticalGuide.rect(inside: rect).minX
+            snapRect.origin.x = verticalGuide.rect(
+                for: rect,
+                inside: superViewBounds
+            ).minX
+            _verticalGuide = verticalGuide
         } else if let verticalGuide = nearestVerticalGuide(
             for: rect.maxX,
-            in: superViewBounds,
+            shapeRect: rect,
+            superviewBounds: superViewBounds,
             with: verticalGuides) {
-            snapRect.origin.x = verticalGuide.rect(inside: rect).minX - snapRect.size.width
+            snapRect.origin.x = verticalGuide.rect(
+                for: rect,
+                inside: superViewBounds
+            ).minX - snapRect.size.width
+            _verticalGuide = verticalGuide
         }
         
         // >> Check Min and Max For Horizontal Guide <<
         
+        var _horizontalGuide: Guide? = nil
         if let horizontalGuide = nearestHorizontalGuide(
             for: rect.minY,
-            in: superViewBounds,
+            shapeRect: rect,
+            superviewBounds: superViewBounds,
             with: horizontalGuides)
         {
-            snapRect.origin.y = horizontalGuide.rect(inside: rect).minY
-        } else if let verticalGuide = nearestHorizontalGuide(
+            snapRect.origin.y = horizontalGuide.rect(
+                for: rect,
+                inside: superViewBounds
+            ).minY
+            _horizontalGuide = horizontalGuide
+        } else if let horizontalGuide = nearestHorizontalGuide(
             for: rect.maxY,
-            in: superViewBounds,
+            shapeRect: rect,
+            superviewBounds: superViewBounds,
             with: horizontalGuides) {
-            snapRect.origin.y = verticalGuide.rect(inside: rect).minY - snapRect.size.height
+            snapRect.origin.y = horizontalGuide.rect(
+                for: rect,
+                inside: superViewBounds
+            ).minY - snapRect.size.height
+            _horizontalGuide = horizontalGuide
         }
         
-        return snapRect
+        return GuideResult(
+            nearestVerticalGuide: _verticalGuide,
+            nearestHorizontalGuide: _horizontalGuide,
+            snapRect: snapRect
+        )
     }
     
     fileprivate func nearestVerticalGuide(
         for position: CGFloat,
-        in rect: CGRect,
+        shapeRect rect: CGRect,
+        superviewBounds: CGRect,
         with verticalGuides: Set<Guide>) -> Guide? {
         
         // Find closes vertical guide first
@@ -111,7 +291,22 @@ extension DrawingViewModel {
         
         var nearestVeriticalGuide: Guide? = nil
         for guide in verticalGuides {
-            let guideRect = guide.rect(inside: rect)
+            
+            // If its a canvas guide our rect will be superview bounds
+            // else the shape view rect
+            let guideRect: CGRect
+            if case .canvas = guide {
+                guideRect = guide.rect(
+                    for: superviewBounds,
+                    inside: superviewBounds
+                )
+            } else {
+                guideRect = guide.rect(
+                    for: rect,
+                    inside: superviewBounds
+                )
+            }
+            
             distance = abs(position - guideRect.minX)
             if (distance < guideState.guideThreshold && distance < upperBoundDistance) {
                 upperBoundDistance = distance
@@ -123,7 +318,8 @@ extension DrawingViewModel {
     
     fileprivate func nearestHorizontalGuide(
         for position: CGFloat,
-        in rect: CGRect,
+        shapeRect rect: CGRect,
+        superviewBounds: CGRect,
         with horizontalGuides: Set<Guide>) -> Guide? {
         
         // Find closes vertical guide first
@@ -132,7 +328,22 @@ extension DrawingViewModel {
         
         var nearestHorizontalGuide: Guide? = nil
         for guide in horizontalGuides {
-            let guideRect = guide.rect(inside: rect)
+            
+            // If its a canvas guide our rect will be superview bounds
+            // else the shape view rect
+            let guideRect: CGRect
+            if case .canvas = guide {
+                guideRect = guide.rect(
+                    for: superviewBounds,
+                    inside: superviewBounds
+                )
+            } else {
+                guideRect = guide.rect(
+                    for: rect,
+                    inside: superviewBounds
+                )
+            }
+            
             distance = abs(position - guideRect.minY)
             if (distance < guideState.guideThreshold && distance < upperBoundDistance) {
                 upperBoundDistance = distance

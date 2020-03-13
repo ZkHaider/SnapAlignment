@@ -19,6 +19,8 @@
 		C4231A0D2419862F00FCB61C /* Drawing.Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4231A0C2419862F00FCB61C /* Drawing.Window.swift */; };
 		C4231A0F2419865C00FCB61C /* Drawing.WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4231A0E2419865C00FCB61C /* Drawing.WindowController.swift */; };
 		C435F6DD241A2E3100850858 /* Dragging.Guide.Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435F6DC241A2E3100850858 /* Dragging.Guide.Contract.swift */; };
+		C435F6DF241A34F800850858 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C435F6DE241A34F800850858 /* README.md */; };
+		C435F6E1241AE76B00850858 /* Guide.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435F6E0241AE76B00850858 /* Guide.Result.swift */; };
 		C4B33E4D24197441004CE9B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E4C24197441004CE9B2 /* AppDelegate.swift */; };
 		C4B33E4F24197441004CE9B2 /* Drawing.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B33E4E24197441004CE9B2 /* Drawing.ViewController.swift */; };
 		C4B33E5124197443004CE9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4B33E5024197443004CE9B2 /* Assets.xcassets */; };
@@ -74,6 +76,8 @@
 		C4231A0C2419862F00FCB61C /* Drawing.Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.Window.swift; sourceTree = "<group>"; };
 		C4231A0E2419865C00FCB61C /* Drawing.WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.WindowController.swift; sourceTree = "<group>"; };
 		C435F6DC241A2E3100850858 /* Dragging.Guide.Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragging.Guide.Contract.swift; sourceTree = "<group>"; };
+		C435F6DE241A34F800850858 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C435F6E0241AE76B00850858 /* Guide.Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.Result.swift; sourceTree = "<group>"; };
 		C4B33E4924197441004CE9B2 /* SnapAlignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapAlignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B33E4C24197441004CE9B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4B33E4E24197441004CE9B2 /* Drawing.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				C41DE752241A0C2D007F97BB /* Guide.MetaInfo.swift */,
 				C41DE754241A0C5E007F97BB /* Guide.Direction.swift */,
 				C41DE756241A0CA5007F97BB /* Guide.State.swift */,
+				C435F6E0241AE76B00850858 /* Guide.Result.swift */,
 			);
 			path = Guides;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 		C4B33E4024197441004CE9B2 = {
 			isa = PBXGroup;
 			children = (
+				C435F6DE241A34F800850858 /* README.md */,
 				C4B33E4B24197441004CE9B2 /* SnapAlignment */,
 				C4BAF5662419D68F00858C13 /* SnapAlignmentTests */,
 				C4B33E4A24197441004CE9B2 /* Products */,
@@ -447,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C435F6DF241A34F800850858 /* README.md in Resources */,
 				C4B33E5124197443004CE9B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +504,7 @@
 				C4B33E4D24197441004CE9B2 /* AppDelegate.swift in Sources */,
 				C4BAF5602419D5A600858C13 /* CGPoint+Extensions.swift in Sources */,
 				C41DE757241A0CA5007F97BB /* Guide.State.swift in Sources */,
+				C435F6E1241AE76B00850858 /* Guide.Result.swift in Sources */,
 				C4BAF5592419C0FF00858C13 /* Square.swift in Sources */,
 				C4BAF54B2419993E00858C13 /* Anchor.View.swift in Sources */,
 				C4BAF55E2419D45700858C13 /* CGRect+Extensions.swift in Sources */,

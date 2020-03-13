@@ -10,16 +10,18 @@ import AppKit
 
 public protocol DraggingViewContract: class {
     func startedDrag(
-        at point: CGPoint,
-        for view: ShapeView
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
     )
     func dragging(
-        at origin: CGPoint,
-        with lastDragLocation: CGPoint,
-        for view: ShapeView
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
     )
     func endDrag(
-        at point: CGPoint,
-        for view: ShapeView
+        for view: ShapeView,
+        in superview: NSView,
+        event: NSEvent
     )
 }
