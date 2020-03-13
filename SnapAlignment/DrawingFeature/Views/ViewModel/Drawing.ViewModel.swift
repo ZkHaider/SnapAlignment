@@ -117,7 +117,7 @@ extension DrawingViewModel {
         guard
            let guideResult = snap(
                shapeView: shapeView,
-               superViewBounds: superview.bounds
+               superview: superview
            )
            else { return }
         
@@ -204,10 +204,10 @@ extension DrawingViewModel {
     /// @param superViewBounds -- is used to calculate the guide rect
     public func snap(
         shapeView view: ShapeView,
-        superViewBounds: CGRect) -> GuideResult? {
+        superview: NSView) -> GuideResult? {
         
         let rect = view.frame
-        
+                
         // Initial rect
         var snapRect = rect
         
@@ -223,52 +223,40 @@ extension DrawingViewModel {
         // >> Check Min and Max For Vertical Guide <<
         
         var _verticalGuide: Guide? = nil
-        if let verticalGuide = nearestVerticalGuide(
+        if let (verticalGuide, guideRect) = nearestVerticalGuide(
             for: rect.minX,
             shapeRect: rect,
-            superviewBounds: superViewBounds,
+            superview: superview,
             with: verticalGuides)
         {
-            snapRect.origin.x = verticalGuide.rect(
-                for: rect,
-                inside: superViewBounds
-            ).minX
+            snapRect.origin.x = guideRect.minX
             _verticalGuide = verticalGuide
-        } else if let verticalGuide = nearestVerticalGuide(
+        } else if let (verticalGuide, guideRect) = nearestVerticalGuide(
             for: rect.maxX,
             shapeRect: rect,
-            superviewBounds: superViewBounds,
+            superview: superview,
             with: verticalGuides) {
-            snapRect.origin.x = verticalGuide.rect(
-                for: rect,
-                inside: superViewBounds
-            ).minX - snapRect.size.width
+            snapRect.origin.x = guideRect.minX - snapRect.size.width
             _verticalGuide = verticalGuide
         }
         
         // >> Check Min and Max For Horizontal Guide <<
         
         var _horizontalGuide: Guide? = nil
-        if let horizontalGuide = nearestHorizontalGuide(
+        if let (horizontalGuide, guideRect) = nearestHorizontalGuide(
             for: rect.minY,
             shapeRect: rect,
-            superviewBounds: superViewBounds,
+            superview: superview,
             with: horizontalGuides)
         {
-            snapRect.origin.y = horizontalGuide.rect(
-                for: rect,
-                inside: superViewBounds
-            ).minY
+            snapRect.origin.y = guideRect.minY
             _horizontalGuide = horizontalGuide
-        } else if let horizontalGuide = nearestHorizontalGuide(
+        } else if let (horizontalGuide, guideRect) = nearestHorizontalGuide(
             for: rect.maxY,
             shapeRect: rect,
-            superviewBounds: superViewBounds,
+            superview: superview,
             with: horizontalGuides) {
-            snapRect.origin.y = horizontalGuide.rect(
-                for: rect,
-                inside: superViewBounds
-            ).minY - snapRect.size.height
+            snapRect.origin.y = guideRect.minY - snapRect.size.height
             _horizontalGuide = horizontalGuide
         }
         
@@ -282,14 +270,14 @@ extension DrawingViewModel {
     fileprivate func nearestVerticalGuide(
         for position: CGFloat,
         shapeRect rect: CGRect,
-        superviewBounds: CGRect,
-        with verticalGuides: Set<Guide>) -> Guide? {
+        superview: NSView,
+        with verticalGuides: Set<Guide>) -> (Guide, CGRect)? {
         
         // Find closes vertical guide first
         var distance = CGFloat.greatestFiniteMagnitude
         var upperBoundDistance: CGFloat = 10000.0
         
-        var nearestVeriticalGuide: Guide? = nil
+        var nearestGuideWithRect: (Guide, CGRect)? = nil
         for guide in verticalGuides {
             
             // If its a canvas guide our rect will be superview bounds
@@ -297,36 +285,44 @@ extension DrawingViewModel {
             let guideRect: CGRect
             if case .canvas = guide {
                 guideRect = guide.rect(
-                    for: superviewBounds,
-                    inside: superviewBounds
+                    for: superview.bounds,
+                    inside: superview.bounds
                 )
             } else {
-                guideRect = guide.rect(
-                    for: rect,
-                    inside: superviewBounds
-                )
+                
+                if let relativeShapeView = superview.subviews
+                    .first(where: { $0.objectHash == guide.viewIdentifier })
+                {
+                    guideRect = guide.rect(
+                        for: relativeShapeView.frame,
+                        inside: superview.bounds
+                    )
+                } else {
+                    continue
+                }
+                
             }
             
             distance = abs(position - guideRect.minX)
             if (distance < guideState.guideThreshold && distance < upperBoundDistance) {
                 upperBoundDistance = distance
-                nearestVeriticalGuide = guide
+                nearestGuideWithRect = (guide, guideRect)
             }
         }
-        return nearestVeriticalGuide
+        return nearestGuideWithRect
     }
     
     fileprivate func nearestHorizontalGuide(
         for position: CGFloat,
         shapeRect rect: CGRect,
-        superviewBounds: CGRect,
-        with horizontalGuides: Set<Guide>) -> Guide? {
+        superview: NSView,
+        with horizontalGuides: Set<Guide>) -> (Guide, CGRect)? {
         
         // Find closes vertical guide first
         var distance = CGFloat.greatestFiniteMagnitude
         var upperBoundDistance: CGFloat = 10000.0
         
-        var nearestHorizontalGuide: Guide? = nil
+        var nearestGuideWithRect: (Guide, CGRect)? = nil
         for guide in horizontalGuides {
             
             // If its a canvas guide our rect will be superview bounds
@@ -334,23 +330,30 @@ extension DrawingViewModel {
             let guideRect: CGRect
             if case .canvas = guide {
                 guideRect = guide.rect(
-                    for: superviewBounds,
-                    inside: superviewBounds
+                    for: superview.bounds,
+                    inside: superview.bounds
                 )
             } else {
-                guideRect = guide.rect(
-                    for: rect,
-                    inside: superviewBounds
-                )
+                
+                if let relativeShapeView = superview.subviews
+                    .first(where: { $0.objectHash == guide.viewIdentifier })
+                {
+                    guideRect = guide.rect(
+                        for: relativeShapeView.frame,
+                        inside: superview.bounds
+                    )
+                } else {
+                    continue
+                }
             }
             
             distance = abs(position - guideRect.minY)
             if (distance < guideState.guideThreshold && distance < upperBoundDistance) {
                 upperBoundDistance = distance
-                nearestHorizontalGuide = guide
+                nearestGuideWithRect = (guide, guideRect)
             }
         }
-        return nearestHorizontalGuide
+        return nearestGuideWithRect
     }
     
 }
