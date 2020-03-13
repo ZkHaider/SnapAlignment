@@ -179,51 +179,12 @@ Algorithm
 =========
 
 1. Initialize a guide state:
-1a. `GuideState`:
-
-```swift
-public final class GuideState {
-    
-    // MARK: - Attributes
-    
-    // A single shape can have multiple guides
-    public var shapeGuideCache: [ShapeView.ShapeGuideIdentifier: Set<Guide>]
-    
-    // Our canvas has a 1 guide per 1 view
-    public var canvasGuideCache: [DrawingViewController.CanvasGuideIdentifier: Guide]
-    
-    public var shapeGuides: Set<Guide> {
-        return shapeGuideCache.values
-            .reduce(
-                into: Set<Guide>(),
-                { $0.formUnion($1) }
-            )
-    }
-    
-    public var canvasGuides: Set<Guide> {
-        return Set(canvasGuideCache.values)
-    }
-    
-    public var allGuides: Set<Guide> {
-        return canvasGuides.union(shapeGuides)
-    }
-    
-    /// Threshold until a view snaps -- 6 px
-    public let guideThreshold: CGFloat
-    
-    // MARK: - Init
-    
-    public init(
-        shapeGuideCache: [ShapeView.ShapeGuideIdentifier: Set<Guide>] = [:],
-        canvasGuideCache: [DrawingViewController.CanvasGuideIdentifier: Guide] = [:],
-        guideThreshold: CGFloat = 6.0)
-    {
-        self.shapeGuideCache = shapeGuideCache
-        self.canvasGuideCache = canvasGuideCache
-        self.guideThreshold = guideThreshold
-    }
-    
-}
-
-```
+1a. `GuideState` should initially only have canvas guides
+2. For each view that is added:
+2a. Add left, top, right, bottom guides for that view in `[ObjectHash: Set<Guide>]` in your `GuideState`
+3. For every drag event:
+3a. Search for the nearest vertical guide under `guideState.guideThreshold` value that is not attached to the current view
+3b. Search for the nearest horizontal guide under `guideState.guideThreshold` value that is ont attached to the current view
+3c. Set the minX, and minY values from those guides to the current dragging view's origin
+4. On drag end, update the current dragged view's guides for its new position
 
